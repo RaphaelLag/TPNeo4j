@@ -5,3 +5,15 @@ Match(m:Cheval)-[p:PARENTE{role:'Mère'}]->(e:Cheval) return m
 match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
 match(co)-[p:PARTICIPE]->(course:Course)
 return ch.nom, avg(p.gain)
+
+
+
+//pour chaque cheval, affiche le cavalier avec lequel il a remporté le plus de 1e prix
+//TODO: manque le cavalier dans le return
+
+match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
+match(co)-[p:PARTICIPE{prix:1}]->(course:Course)
+match(ca:Cavalier)-[m:MONTE]->(co)
+WITH ch.nom AS cheval, ca.nom AS cavalier, count(*) AS nb_victoire
+WITH cheval, max(nb_victoire) AS max_victoire
+return cheval, max_victoire
