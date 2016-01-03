@@ -19,6 +19,14 @@ CREATE (Arc:Course {nom:"Prix de l'Arc de Triomphe", hippodrome:'Longchamp', typ
 CREATE (Amérique:Course {nom:"Prix d'Amérique", hippodrome:'Vincennes', type:'Trot'})
 CREATE (Cornulier:Course {nom:'Prix de Cornulier', hippodrome:'Vincennes', type:'Trot'})
 
+CREATE (:Boxe {batiment:'A', rangee:1, numero:1})
+CREATE (:Boxe {batiment:'A', rangee:1, numero:2})
+CREATE (:Boxe {batiment:'A', rangee:2, numero:1})
+CREATE (:Boxe {batiment:'A', rangee:2, numero:2})
+CREATE (:Boxe {batiment:'B', rangee:1, numero:1})
+CREATE (:Boxe {batiment:'B', rangee:1, numero:2})
+CREATE (:Boxe {batiment:'B', rangee:1, numero:3})
+
 CREATE (Bonica)-[:PARENTE {roles:['Mère']}]->(Houla)
 CREATE (Bonica)-[:PARENTE {roles:['Mère']}]->(Lami)
 CREATE (Bonica)-[:PARENTE {roles:['Mère']}]->(Horspair)
