@@ -1,0 +1,6 @@
+CREATE (Bonica:Cheval {nom:'Bonica du Teilleul', sexe:'F', naissance:1989, robe:'Bai', race:'Poney Français de Selle'}) 
+CREATE (Gala:Cheval {nom:'Gala de Montiège', sexe:'M', naissance:1994, robe:'Gris Rouanné', race:'Poney Français de Selle'}) 
+CREATE (Lami:Cheval {nom:'Lami des Herbages', sexe:'H', naissance:1999, robe:'Bai', race:'Poney'}) 
+CREATE (Houla:Cheval {nom:'Houla du Tornegat', sexe:'F', naissance:1995, robe:'Alezan', race:'Poney Français de Selle'}) 
+CREATE (Jack:Cheval {nom:'Jack de Frontenay', sexe:'H', naissance:1997, robe:'Gris', race:'Demi-Sang Arabe'}) 
+CREATE (Horspair:Cheval {nom:'Hors pair', sexe:'M', naissance:1995, robe:'Bai', race:'Poney Français de Selle'}) 
