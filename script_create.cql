@@ -62,11 +62,24 @@ CREATE (EmmaHoula:Couple)
 CREATE (Ingrid)-[:MONTE]->(IngridJack)
 CREATE (Raphaël)-[:MONTE]->(RaphaelGala)
 CREATE (Emma)-[:MONTE]->(EmmaHoula)
-
 CREATE (Jack)-[:EST_MONTE]->(IngridJack)
 CREATE (Gala)-[:EST_MONTE]->(RaphaelGala)
 CREATE (Houla)-[:EST_MONTE]->(EmmaHoula)
 
-CREATE (IngridJack)-[:PARTICIPE {prix:1}]->(Diane)
-CREATE (RaphaelGala)-[:PARTICIPE {prix:2}]->(Diane)
-CREATE (EmmaHoula)-[:PARTICIPE {prix:3}]->(Diane)
+CREATE (IngridJack)-[:PARTICIPE {prix:1, gain:571400, date:2015}]->(Diane)
+CREATE (RaphaelGala)-[:PARTICIPE {prix:2, gain:228600, date:2015}]->(Diane)
+CREATE (EmmaHoula)-[:PARTICIPE {prix:3, gain:114300, date:2015}]->(Diane)
+
+CREATE (RaphaelHoula:Couple)
+CREATE (EmmaBonica:Couple)
+
+CREATE (Raphaël)-[:MONTE]->(RaphaelHoula)
+CREATE (Emma)-[:MONTE]->(EmmaBonica)
+CREATE (Houla)-[:EST_MONTE]->(RaphaelHoula)
+CREATE (Bonica)-[:EST_MONTE]->(EmmaBonica)
+
+CREATE (IngridJack)-[:PARTICIPE {prix:3, gain:571500, date:2014}]->(Arc)
+CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:2857000, date:2014}]->(Arc)
+CREATE (EmmaBonica)-[:PARTICIPE {prix:2, gain:1143000, date:2014}]->(Arc)
+
+CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:315000, date:2015}]->(Cornulier)
