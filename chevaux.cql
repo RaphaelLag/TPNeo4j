@@ -4,3 +4,4 @@ CREATE (Lami:Cheval {nom:'Lami des Herbages', sexe:'H', naissance:1999, robe:'Ba
 CREATE (Houla:Cheval {nom:'Houla du Tornegat', sexe:'F', naissance:1995, robe:'Alezan', race:'Poney Français de Selle'}) 
 CREATE (Jack:Cheval {nom:'Jack de Frontenay', sexe:'H', naissance:1997, robe:'Gris', race:'Demi-Sang Arabe'}) 
 CREATE (Horspair:Cheval {nom:'Hors pair', sexe:'M', naissance:1995, robe:'Bai', race:'Poney Français de Selle'}) 
+CREATE (Pyriet:Cheval {nom:'Pyriet des Fontaines', sexe:'F', naissance:2003, robe:'Bai', race:'Selle Français'})
