@@ -60,7 +60,7 @@ CREATE (RaphaelGala:Couple)
 CREATE (EmmaHoula:Couple)
 
 CREATE (Ingrid)-[:MONTE]->(IngridJack)
-CREATE (Raphael)-[:MONTE]->(RaphaelGala)
+CREATE (Raphaël)-[:MONTE]->(RaphaelGala)
 CREATE (Emma)-[:MONTE]->(EmmaHoula)
 
 CREATE (Jack)-[:EST_MONTE]->(IngridJack)
