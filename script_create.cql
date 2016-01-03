@@ -54,3 +54,19 @@ CREATE (Houla)-[:OCCUPE]->(b4)
 CREATE (Jack)-[:OCCUPE]->(b5)
 CREATE (Horspair)-[:OCCUPE]->(b6)
 CREATE (Pyriet)-[:OCCUPE]->(b7)
+
+CREATE (IngridJack:Couple)
+CREATE (RaphaelGala:Couple)
+CREATE (EmmaHoula:Couple)
+
+CREATE (Ingrid)-[:MONTE]->(IngridJack)
+CREATE (Raphael)-[:MONTE]->(RaphaelGala)
+CREATE (Emma)-[:MONTE]->(EmmaHoula)
+
+CREATE (Jack)-[:EST_MONTE]->(IngridJack)
+CREATE (Gala)-[:EST_MONTE]->(RaphaelGala)
+CREATE (Houla)-[:EST_MONTE]->(EmmaHoula)
+
+CREATE (IngridJack)-[:PARTICIPE {prix:1}]->(Diane)
+CREATE (RaphaelGala)-[:PARTICIPE {prix:2}]->(Diane)
+CREATE (EmmaHoula)-[:PARTICIPE {prix:3}]->(Diane)
