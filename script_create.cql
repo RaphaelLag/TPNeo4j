@@ -62,15 +62,18 @@ CREATE (Horspair)-[:OCCUPE]->(b6)
 CREATE (Pyriet)-[:OCCUPE]->(b7)
 
 CREATE (IngridJack:Couple)
+CREATE (IngridHoula:Couple)
 CREATE (RaphaelGala:Couple)
 CREATE (EmmaHoula:Couple)
 
 CREATE (Ingrid)-[:MONTE]->(IngridJack)
+CREATE (Ingrid)-[:MONTE]->(IngridHoula)
 CREATE (Raphaël)-[:MONTE]->(RaphaelGala)
 CREATE (Emma)-[:MONTE]->(EmmaHoula)
 CREATE (Jack)-[:EST_MONTE]->(IngridJack)
 CREATE (Gala)-[:EST_MONTE]->(RaphaelGala)
 CREATE (Houla)-[:EST_MONTE]->(EmmaHoula)
+CREATE (Houla)-[:EST_MONTE]->(IngridHoula)
 
 CREATE (IngridJack)-[:PARTICIPE {prix:1, gain:571400, date:2015}]->(Diane)
 CREATE (RaphaelGala)-[:PARTICIPE {prix:2, gain:228600, date:2015}]->(Diane)
@@ -89,3 +92,8 @@ CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:2857000, date:2014}]->(Arc)
 CREATE (EmmaBonica)-[:PARTICIPE {prix:2, gain:1143000, date:2014}]->(Arc)
 
 CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:315000, date:2015}]->(Cornulier)
+
+CREATE (EmmaHoula)-[:PARTICIPE {prix:1, gain:315000, date:2013}]->(Diane)
+CREATE (IngridHoula)-[:PARTICIPE {prix:1, gain:114300, date:2014}]->(Diane)
+
+
