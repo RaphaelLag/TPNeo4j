@@ -1,0 +1,15 @@
+Notre base de données pourrait être celle d’un haras élevant des chevaux de course. Elle est composée des six entités suivantes: 
+-	Les chevaux présents dans le haras
+-	Les boxes du haras
+-	Les cavaliers professionnels salariés du haras
+-	Les couples (cheval/cavalier) ayant existé
+-	Les propriétaires des chevaux du haras 
+-	Les compétions auxquelles les chevaux peuvent participer 
+
+A chaque cheval est associé un et un seul box. 
+Un cheval peut appartenir à un ou plusieurs couples (possiblement aucun). 
+Un cheval doit avoir au moins un propriétaire (un cavalier peut être propriétaire). 
+Un cavalier peut appartenir à un ou plusieurs couples (possiblement aucun). 
+Un couple associe toujours un et un seul cheval à un et un seul cavalier.
+Un couple peut avoir participé à une ou plusieurs compétions (possiblement aucune). 
+
