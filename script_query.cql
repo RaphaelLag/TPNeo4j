@@ -24,9 +24,12 @@ match(co)-[p:PARTICIPE{classement:1}]->(course:Course)
 match(ca:Cavalier)-[m:MONTE]->(co)
 return ch.nom AS cheval, extract(cav IN filter(c in collect(distinct ca) where c.sexe = 'F')|cav.nom ) AS cavaliers
 
-//affiche le gain maximal remporté par un cheval, ainsi que le nom de la course et du cheval associé
+//affiche le gain maximal remporté par un cheval, 
+//ainsi que le nom de la course et du cheval associé, avec son propriétaire et son emplacement de box 
 match()-[participation:PARTICIPE]->(:Course)
 with MAX(participation.gain) AS gain_max
 match(course:Course)-[p:PARTICIPE{gain:gain_max}]-(couple:Couple)
 match(ch:Cheval)-[:EST_MONTE]->(couple)
-return p.gain AS gain, ch.nom AS cheval, course.nom AS course 
+match(prop:Propriétaire)-[:EST_PROPRIETAIRE_DE]->(ch)
+match(ch)-[:OCCUPE]->(b:Box)
+return p.gain AS gain, ch.nom AS cheval, collect(prop.nom) AS Propriétaire, b AS Emplacement_box, course.nom AS course
