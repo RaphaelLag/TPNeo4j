@@ -32,3 +32,10 @@ match(ca:Cavalier)-[m:MONTE]->(co)
 return ch.nom AS cheval, ca.nom AS cavalier, count(*) AS nb_victoire
 order by nb_victoire DESC
 Limit 1
+
+
+//Affiche pour chaque cheval les noms des ses cavalières 
+match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
+match(co)-[p:PARTICIPE{classement:1}]->(course:Course)
+match(ca:Cavalier)-[m:MONTE]->(co)
+return ch.nom AS cheval, extract(cav IN filter(c in collect(distinct ca) where c.sexe = 'F')|cav.nom ) AS cavaliers
