@@ -1,11 +1,9 @@
 Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{classement:1}]->()
 Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
-Return p as père, m as mère, count(*) as nb_victoires
-
-Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{classement:1}]->()
-Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
 With p as père, m as mère, count(*) as nb_victoires
-Return max(nb_victoires)
+With collect(père) as pères, collect(mère) as mères, collect(nb_victoires) as counts, max(nb_victoires) as max_nb_victoires
+With max_nb_victoires, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then pères[i] else null end) AS père, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then mères[i] else null end) AS mère
+Return filter(x in père where x is not null)[0] , filter(x in mère where x is not null)[0], max_nb_victoires;
 
 
 //moyenne des gains par cheval
