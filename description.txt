@@ -13,3 +13,6 @@ Un cavalier peut appartenir à un ou plusieurs couples (possiblement aucun).
 Un couple associe toujours un et un seul cheval à un et un seul cavalier.
 Un couple peut avoir participé à une ou plusieurs compétions (possiblement aucune). 
 
+Un cheval doit obligatoirement posséder un nom.
+Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement (prix) résultant.
+
