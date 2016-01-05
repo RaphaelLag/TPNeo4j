@@ -1,4 +1,6 @@
-Match(m:Cheval)-[p:PARENTE{role:'Mère'}]->(e:Cheval) return m
+Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{classement:1}]->()
+Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
+Return p as père, m as mère, count(*) as nb_victoires
 
 
 //moyenne des gains par cheval
