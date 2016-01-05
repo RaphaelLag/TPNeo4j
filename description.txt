@@ -17,5 +17,5 @@ Un couple peut avoir participé à une ou plusieurs courses (possiblement aucune
 Une course peut avoir été courrue par plusieurs couples (possiblement aucun).
 
 Un cheval doit obligatoirement posséder un nom.
-Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement (prix) résultant.
+Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement résultant.
 
