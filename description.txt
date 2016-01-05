@@ -4,14 +4,17 @@ Notre base de données pourrait être celle d’un haras élevant des chevaux de
 -	Les cavaliers professionnels salariés du haras
 -	Les couples (cheval/cavalier) ayant existé
 -	Les propriétaires des chevaux du haras 
--	Les compétions auxquelles les chevaux peuvent participer 
+-	Les courses auxquelles les chevaux peuvent participer 
 
 A chaque cheval est associé un et un seul box. 
+Un box peut contenir au plus un cheval.
 Un cheval peut appartenir à un ou plusieurs couples (possiblement aucun). 
 Un cheval doit avoir au moins un propriétaire (un cavalier peut être propriétaire). 
+Un propriétaire peut posséder plusieurs chevaux (possiblement aucun).
 Un cavalier peut appartenir à un ou plusieurs couples (possiblement aucun). 
 Un couple associe toujours un et un seul cheval à un et un seul cavalier.
-Un couple peut avoir participé à une ou plusieurs compétions (possiblement aucune). 
+Un couple peut avoir participé à une ou plusieurs courses (possiblement aucune). 
+Une course peut avoir été courrue par plusieurs couples (possiblement aucun).
 
 Un cheval doit obligatoirement posséder un nom.
 Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement (prix) résultant.
