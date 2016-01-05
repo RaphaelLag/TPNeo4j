@@ -1,7 +1,7 @@
 MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r
 
 CREATE CONSTRAINT ON (ch:Cheval) ASSERT exists(ch.nom)
-CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.prix)
+CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.classement)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.date)
 
 CREATE (Ingrid:Cavalier {nom:'Hurbain', prenom:'Ingrid', sexe:'F', naissance:1993, niveau:5}) 
@@ -75,9 +75,9 @@ CREATE (Gala)-[:EST_MONTE]->(RaphaelGala)
 CREATE (Houla)-[:EST_MONTE]->(EmmaHoula)
 CREATE (Houla)-[:EST_MONTE]->(IngridHoula)
 
-CREATE (IngridJack)-[:PARTICIPE {prix:1, gain:571400, date:2015}]->(Diane)
-CREATE (RaphaelGala)-[:PARTICIPE {prix:2, gain:228600, date:2015}]->(Diane)
-CREATE (EmmaHoula)-[:PARTICIPE {prix:3, gain:114300, date:2015}]->(Diane)
+CREATE (IngridJack)-[:PARTICIPE {classement:1, gain:571400, date:2015}]->(Diane)
+CREATE (RaphaelGala)-[:PARTICIPE {classement:2, gain:228600, date:2015}]->(Diane)
+CREATE (EmmaHoula)-[:PARTICIPE {classement:3, gain:114300, date:2015}]->(Diane)
 
 CREATE (RaphaelHoula:Couple)
 CREATE (EmmaBonica:Couple)
@@ -87,13 +87,13 @@ CREATE (Emma)-[:MONTE]->(EmmaBonica)
 CREATE (Houla)-[:EST_MONTE]->(RaphaelHoula)
 CREATE (Bonica)-[:EST_MONTE]->(EmmaBonica)
 
-CREATE (IngridJack)-[:PARTICIPE {prix:3, gain:571500, date:2014}]->(Arc)
-CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:2857000, date:2014}]->(Arc)
-CREATE (EmmaBonica)-[:PARTICIPE {prix:2, gain:1143000, date:2014}]->(Arc)
+CREATE (IngridJack)-[:PARTICIPE {classement:3, gain:571500, date:2014}]->(Arc)
+CREATE (RaphaelHoula)-[:PARTICIPE {classement:1, gain:2857000, date:2014}]->(Arc)
+CREATE (EmmaBonica)-[:PARTICIPE {classement:2, gain:1143000, date:2014}]->(Arc)
 
-CREATE (RaphaelHoula)-[:PARTICIPE {prix:1, gain:315000, date:2015}]->(Cornulier)
+CREATE (RaphaelHoula)-[:PARTICIPE {classement:1, gain:315000, date:2015}]->(Cornulier)
 
-CREATE (EmmaHoula)-[:PARTICIPE {prix:1, gain:315000, date:2013}]->(Diane)
-CREATE (IngridHoula)-[:PARTICIPE {prix:1, gain:114300, date:2014}]->(Diane)
+CREATE (EmmaHoula)-[:PARTICIPE {classement:1, gain:315000, date:2013}]->(Diane)
+CREATE (IngridHoula)-[:PARTICIPE {classement:1, gain:114300, date:2014}]->(Diane)
 
 
