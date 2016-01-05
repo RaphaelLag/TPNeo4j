@@ -2,6 +2,11 @@ Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{cl
 Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
 Return p as père, m as mère, count(*) as nb_victoires
 
+Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{classement:1}]->()
+Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
+With p as père, m as mère, count(*) as nb_victoires
+Return max(nb_victoires)
+
 
 //moyenne des gains par cheval
 match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
