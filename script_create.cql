@@ -4,6 +4,10 @@ CREATE CONSTRAINT ON (ch:Cheval) ASSERT exists(ch.nom)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.classement)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.date)
 
+// Indexes
+CREATE INDEX ON :CHEVAL(nom);
+CREATE INDEX ON :PARTICIPE(classement);
+
 // Cavaliers
 CREATE (Ingrid:Cavalier {nom:'Hurbain', prenom:'Ingrid', sexe:'F', naissance:1993, niveau:5}) 
 CREATE (Raphaël:Cavalier {nom:'Laguerre', prenom:'Raphaël', sexe:'M', niveau:7}) 
