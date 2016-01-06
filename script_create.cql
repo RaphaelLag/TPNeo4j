@@ -1,11 +1,10 @@
 // Contraintes
-CREATE CONSTRAINT ON (ch:Cheval) ASSERT ch.nom IS UNIQUE 
+CREATE CONSTRAINT ON (ch:Cheval) ASSERT ch.nom IS UNIQUE // Ceci crée automatiquement un index sur les noms
 CREATE CONSTRAINT ON (ch:Cheval) ASSERT exists(ch.nom)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.classement)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.date)
 
 // Indexes
-CREATE INDEX ON :CHEVAL(nom);
 CREATE INDEX ON :PARTICIPE(classement);
 
 // Cavaliers
