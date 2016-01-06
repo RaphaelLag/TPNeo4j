@@ -1,35 +1,36 @@
-Match(p:Cheval)-[:PARENTE{role:'Père'}]->(e1:Cheval)-->(:Couple)-[:PARTICIPE{classement:1}]->()
-Match(m:Cheval)-[:PARENTE{role:'Mère'}]->(e1)
-With p as père, m as mère, count(*) as nb_victoires
-With collect(père) as pères, collect(mère) as mères, collect(nb_victoires) as counts, max(nb_victoires) as max_nb_victoires
-With max_nb_victoires, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then pères[i] else null end) AS père, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then mères[i] else null end) AS mère
-Return filter(x in père where x is not null)[0] , filter(x in mère where x is not null)[0], max_nb_victoires;
+// Cette requête affiche les gains moyens remportés en courses de chaque cheval du haras
+match(cheval:Cheval)-[:EST_MONTE]->(couple:Couple)
+match(couple)-[p:PARTICIPE]->()
+return cheval.nom as Cheval, avg(p.gain) as Moyenne
 
-//moyenne des gains par cheval
-match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
-match(co)-[p:PARTICIPE]->(course:Course)
-return ch.nom, avg(p.gain)
+// Cette requête affiche le nom du cavalier ayant remporté le plus de victoires avec Houla ainsi que le nombre de victoires associé
+match(cheval:Cheval{nom:"Houla du Tornegat"})-[:EST_MONTE]->(couple:Couple)
+match(couple)-[:PARTICIPE{classement:1}]->()
+match(cavalier:Cavalier)-[:MONTE]->(couple)
+return cheval.nom as Cheval, cavalier.nom as Cavalier, count(*) as Nb_victoires
+order by Nb_victoires desc
+limit 1
 
-//pour Houla, affiche le cavalier avec lequel il a remporté le plus de 1e prix
-match(ch:Cheval{nom:"Houla du Tornegat"})-[:EST_MONTE]->(co:Couple)
-match(co)-[p:PARTICIPE{classement:1}]->(course:Course)
-match(ca:Cavalier)-[m:MONTE]->(co)
-return ch.nom AS cheval, ca.nom AS cavalier, count(*) AS nb_victoire
-order by nb_victoire DESC
-Limit 1
+// Cette requête affiche le nom des cavalières de chaque cheval
+match(cheval:Cheval)-[:EST_MONTE]->(co:Couple)
+match(couple)-[:PARTICIPE{classement:1}]->()
+match(cavalier:Cavalier)-[:MONTE]->(couple)
+return cheval.nom as Cheval, extract(c IN filter(cav in collect(distinct cavalier) where cav.sexe = 'F')|c.nom ) as Cavalières
 
-//Affiche pour chaque cheval les noms des ses cavalières 
-match(ch:Cheval)-[:EST_MONTE]->(co:Couple)
-match(co)-[p:PARTICIPE{classement:1}]->(course:Course)
-match(ca:Cavalier)-[m:MONTE]->(co)
-return ch.nom AS cheval, extract(cav IN filter(c in collect(distinct ca) where c.sexe = 'F')|cav.nom ) AS cavaliers
+// Cette requête affiche le nom du cheval ayant remporté le gain le plus élevé dans une course ainsi que le nom de la course, le propriétaire, le box et le gain associé
+match()-[p:PARTICIPE]->(:Course)
+with MAX(p.gain) as gain_max
+match(course:Course)-[par:PARTICIPE{gain:gain_max}]-(couple:Couple)
+match(cheval:Cheval)-[:EST_MONTE]->(couple)
+match(proprietaire:Propriétaire)-[:EST_PROPRIETAIRE_DE]->(cheval)
+match(cheval)-[:OCCUPE]->(box:Box)
+return cheval.nom as Cheval, par.gain as Gain_max, collect(proprietaire.nom) as Propriétaire, box as Emplacement_box, course.nom as Course
 
-//affiche le gain maximal remporté par un cheval, 
-//ainsi que le nom de la course et du cheval associé, avec son propriétaire et son emplacement de box 
-match()-[participation:PARTICIPE]->(:Course)
-with MAX(participation.gain) AS gain_max
-match(course:Course)-[p:PARTICIPE{gain:gain_max}]-(couple:Couple)
-match(ch:Cheval)-[:EST_MONTE]->(couple)
-match(prop:Propriétaire)-[:EST_PROPRIETAIRE_DE]->(ch)
-match(ch)-[:OCCUPE]->(b:Box)
-return p.gain AS gain, ch.nom AS cheval, collect(prop.nom) AS Propriétaire, b AS Emplacement_box, course.nom AS course
+// Cette requête affiche le mâle et la femelle dont les produits (poulains) ont remporté le plus de victoires ainsi que la somme de ces victoires.
+// Cela sert donc à trouver le couple de chevaux dont les produits sont les plus performants.
+match(pere:Cheval)-[:PARENTE{role:'Père'}]->(cheval:Cheval)-->()-[:PARTICIPE{classement:1}]->()
+match(mere:Cheval)-[:PARENTE{role:'Mère'}]->(cheval)
+with pere as père, mere as mère, count(*) as nb_victoires
+with collect(père) as pères, collect(mère) as mères, collect(nb_victoires) as counts, max(nb_victoires) as max_nb_victoires
+with max_nb_victoires, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then pères[i] else null end) AS père, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then mères[i] else null end) AS mère
+return filter(x in père where x is not null)[0] as Père, filter(x in mère where x is not null)[0] as Mère, max_nb_victoires;
