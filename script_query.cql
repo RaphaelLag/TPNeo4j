@@ -1,6 +1,3 @@
-CREATE INDEX ON :CHEVAL(nom);
-CREATE INDEX ON :PARTICIPE(classement);
-
 // Cette requête affiche les gains moyens remportés en courses de chaque cheval du haras
 match(cheval:Cheval)-[:EST_MONTE]->(couple:Couple)
 match(couple)-[p:PARTICIPE]->()
