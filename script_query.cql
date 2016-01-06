@@ -32,7 +32,7 @@ match(proprietaire:Propriétaire)-[:EST_PROPRIETAIRE_DE]->(cheval)
 match(cheval)-[:OCCUPE]->(box:Box)
 return cheval.nom as Cheval, par.gain as Gain_max, collect(proprietaire.nom) as Propriétaires, box as Emplacement_box, course.nom as Course
 
-// Cette requête affiche le mâle et la femelle dont les produits (poulains) ont remporté le plus de victoires ainsi que la somme de ces victoires.
+// Cette requête affiche le mâle et la femelle dont les produits (poulains) ont remporté le plus de victoires ainsi que le nombre de ces victoires.
 // Cela sert donc à trouver le couple de chevaux dont les produits sont les plus performants.
 match(pere:Cheval)-[:PARENTE{role:'Père'}]->(cheval:Cheval)-->()-[:PARTICIPE{classement:1}]->()
 match(mere:Cheval)-[:PARENTE{role:'Mère'}]->(cheval)
