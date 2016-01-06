@@ -16,6 +16,7 @@ CREATE (Houla:Cheval {nom:'Houla du Tornegat', sexe:'F', naissance:1995, robe:'A
 CREATE (Jack:Cheval {nom:'Jack de Frontenay', sexe:'H', naissance:1997, robe:'Gris', race:'Demi-Sang Arabe'}) 
 CREATE (Horspair:Cheval {nom:'Hors pair', sexe:'M', naissance:1995, robe:'Bai', race:'Poney Français de Selle'})
 CREATE (Pyriet:Cheval {nom:'Pyriet des Fontaines', sexe:'F', naissance:2003, robe:'Bai', race:'Selle Français'}) 
+CREATE (:Cheval {nom:'Papouille des Fontaines', sexe:'M', race:'Demi-Sang Arabe'}) 
 
 // Propriétaires
 CREATE (Marc:Propriétaire {nom:'Dupont', prenom:'Marc', sexe:'M', adresse:'123 rue du Pont', téléphone:'0123456789'}) 
