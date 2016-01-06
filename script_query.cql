@@ -1,9 +1,15 @@
+CREATE INDEX ON :CHEVAL(nom);
+CREATE INDEX ON :PARTICIPE(classement);
+
 // Cette requête affiche les gains moyens remportés en courses de chaque cheval du haras
 match(cheval:Cheval)-[:EST_MONTE]->(couple:Couple)
 match(couple)-[p:PARTICIPE]->()
 return cheval.nom as Cheval, avg(p.gain) as Moyenne
 
 // Cette requête affiche le nom du cavalier ayant remporté le plus de victoires avec Houla ainsi que le nombre de victoires associé
+//Ici, l'index sur la clé "nom" du label cheval permet d'accélérer l'accès aux chevaux nommés "Houla du Tornegat"). 
+//Dans le cas où il n'y aurait pas d'index sur le nom du cheval, on devrait récupérer tous les noeuds de type cheval et comparer leur clé "nom" avec "Houla du Tornegat"
+//De même avec l'index sur la clé "classement" de la relation "PARTICIPE".
 match(cheval:Cheval{nom:"Houla du Tornegat"})-[:EST_MONTE]->(couple:Couple)
 match(couple)-[:PARTICIPE{classement:1}]->()
 match(cavalier:Cavalier)-[:MONTE]->(couple)
@@ -12,6 +18,9 @@ order by Nb_victoires desc
 limit 1
 
 // Cette requête affiche le nom des cavalières de chaque cheval
+//L'index sur "classement" de la relation "PARTICIPE" permet de retrouver rapidement 
+//les relations "PARTICIPE" dont la clé "classement" vaut 1 au lieu de parcourir 
+//toutes les relations "PARTICIPE" et de comparer la valeur de "classement".
 match(cheval:Cheval)-[:EST_MONTE]->(couple:Couple)
 match(couple)-[:PARTICIPE{classement:1}]->()
 match(cavalier:Cavalier)-[:MONTE]->(couple)
