@@ -1,6 +1,6 @@
 
 I - Description des données
-Notre base de données pourrait être celle d’un haras élevant des chevaux de course. Elle est composée des six entités suivantes: 
+Notre base de données est celle d’un haras élevant/entraînant des chevaux de course. Elle permet d'accéder rapidement à un grand nombre d'informations et d'indicateurs utiles à le gestion du haras. Elle est composée des six entités suivantes: 
 -	Les chevaux présents dans le haras
 -	Les boxes du haras
 -	Les cavaliers professionnels salariés du haras
@@ -8,23 +8,12 @@ Notre base de données pourrait être celle d’un haras élevant des chevaux de
 -	Les propriétaires des chevaux du haras 
 -	Les courses auxquelles les chevaux peuvent participer 
 
-A chaque cheval est associé un et un seul box. 
-Un box peut contenir au plus un cheval.
-Un cheval peut appartenir à un ou plusieurs couples (possiblement aucun). 
-Un cheval doit avoir au moins un propriétaire (un cavalier peut être propriétaire). 
-Un propriétaire peut posséder plusieurs chevaux (possiblement aucun).
-Un cavalier peut appartenir à un ou plusieurs couples (possiblement aucun). 
-Un couple associe toujours un et un seul cheval à un et un seul cavalier.
-Un couple peut avoir participé à une ou plusieurs courses (possiblement aucune). 
-Une course peut avoir été courrue par plusieurs couples (possiblement aucun).
-Pour un cheval, on peut lui associer son père et/ou sa mère.
-
 Un cheval doit obligatoirement posséder un nom et ce nom doit être unique.
-Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement résultant.
+Lorsque qu'un couple participe à une course, on doit toujours stocker l'année et le classement résultant.
 
 II - Justification des indexes
 Vu la nature des données, il est probable que la base de données soit utilisée principalement pour accéder rapidement
 aux informations relatives à un cheval précis. L'attibut d'un cheval le plus fréquemment connu étant son nom, il paraît 
 pertinant de créer un index sur les noms de chevaux afin d'accélerer la recheche par nom. De plus il pourait être 
-intéressant pour un éleveur de sortir des statistiques sur les performances de ses chevaux. Nous avons donc créé un index
+intéressant pour un entraîneur de sortir des statistiques sur les performances de ses chevaux. Nous avons donc créé un index
 sur l'attribut "classement" de la relation "PARTICPE".
