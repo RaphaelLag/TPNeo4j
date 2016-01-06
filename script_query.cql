@@ -12,19 +12,19 @@ order by Nb_victoires desc
 limit 1
 
 // Cette requête affiche le nom des cavalières de chaque cheval
-match(cheval:Cheval)-[:EST_MONTE]->(co:Couple)
+match(cheval:Cheval)-[:EST_MONTE]->(couple:Couple)
 match(couple)-[:PARTICIPE{classement:1}]->()
 match(cavalier:Cavalier)-[:MONTE]->(couple)
 return cheval.nom as Cheval, extract(c IN filter(cav in collect(distinct cavalier) where cav.sexe = 'F')|c.nom ) as Cavalières
 
-// Cette requête affiche le nom du cheval ayant remporté le gain le plus élevé dans une course ainsi que le nom de la course, le propriétaire, le box et le gain associé
+// Cette requête affiche le nom du cheval ayant remporté le gain le plus élevé dans une course ainsi que le nom de la course, les propriétaires, le box et le gain associé
 match()-[p:PARTICIPE]->(:Course)
 with MAX(p.gain) as gain_max
 match(course:Course)-[par:PARTICIPE{gain:gain_max}]-(couple:Couple)
 match(cheval:Cheval)-[:EST_MONTE]->(couple)
 match(proprietaire:Propriétaire)-[:EST_PROPRIETAIRE_DE]->(cheval)
 match(cheval)-[:OCCUPE]->(box:Box)
-return cheval.nom as Cheval, par.gain as Gain_max, collect(proprietaire.nom) as Propriétaire, box as Emplacement_box, course.nom as Course
+return cheval.nom as Cheval, par.gain as Gain_max, collect(proprietaire.nom) as Propriétaires, box as Emplacement_box, course.nom as Course
 
 // Cette requête affiche le mâle et la femelle dont les produits (poulains) ont remporté le plus de victoires ainsi que la somme de ces victoires.
 // Cela sert donc à trouver le couple de chevaux dont les produits sont les plus performants.
@@ -33,4 +33,4 @@ match(mere:Cheval)-[:PARENTE{role:'Mère'}]->(cheval)
 with pere as père, mere as mère, count(*) as nb_victoires
 with collect(père) as pères, collect(mère) as mères, collect(nb_victoires) as counts, max(nb_victoires) as max_nb_victoires
 with max_nb_victoires, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then pères[i] else null end) AS père, extract(i IN range(0, size(counts)-1) | CASE WHEN counts[i] = max_nb_victoires then mères[i] else null end) AS mère
-return filter(x in père where x is not null)[0] as Père, filter(x in mère where x is not null)[0] as Mère, max_nb_victoires;
+return filter(x in père where x is not null)[0] as Père, filter(x in mère where x is not null)[0] as Mère, max_nb_victoires
