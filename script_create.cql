@@ -1,4 +1,5 @@
 // Contraintes
+CREATE CONSTRAINT ON (ch:Cheval) ASSERT ch.nom IS UNIQUE 
 CREATE CONSTRAINT ON (ch:Cheval) ASSERT exists(ch.nom)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.classement)
 CREATE CONSTRAINT ON ()-[part:PARTICIPE]-() ASSERT exists(part.date)
