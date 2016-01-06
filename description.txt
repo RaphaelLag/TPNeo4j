@@ -1,3 +1,5 @@
+
+I - Description des données
 Notre base de données pourrait être celle d’un haras élevant des chevaux de course. Elle est composée des six entités suivantes: 
 -	Les chevaux présents dans le haras
 -	Les boxes du haras
@@ -20,3 +22,9 @@ Pour un cheval, on peut lui associer son père et/ou sa mère.
 Un cheval doit obligatoirement posséder un nom.
 Lorsque qu'un couple participe à une compétition, on doit toujours stocker l'année et le classement résultant.
 
+II - Justification des indexes
+Vu la nature des données, il est probable que la base de données soit utilisée principalement pour accéder rapidement
+aux informations relatives à un cheval précis. L'attibut d'un cheval le plus fréquemment connu étant son nom, il paraît 
+pertinant de créer un index sur les noms de chevaux afin d'accélerer la recheche par nom. De plus il pourait être 
+intéressant pour un éleveur de sortir des statistiques sur les performances de ses chevaux. Nous avons donc créé un index
+sur l'attribut "classement" de la relation "PARTICPE".
